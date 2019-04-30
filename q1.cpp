@@ -66,15 +66,18 @@ void print_nome_salario (Funcionario n_func) {
 	cout << "Nome do Funcionario: " << n_func.salario << endl;
 };
 
+//fazer alterações na main, pois esse código abaixo está com as funções antigas, porque os métodos agora são privados
+//no metodo antigo, todos os objetos eram públicos.
+
 int main(int argc, char const *argv[])
 {
 	vector<Empresa> lista_empresa;
 	cout << "Testando o funcionamento\n";
 	//criando funcionário --- teste ---
 	Funcionario f1;
-	f1.nome = "Marlus Marcos";
-	f1.salario = 4.855;
-	cout << "nome do func: " << f1.nome <<"\nSalaŕio do func: " << f1.salario << endl;
+	f1.setNome = "Marlus Marcos";
+	f1.setSalario = 4.855;
+	cout << "nome do func: " << f1.getNome <<"\nSalaŕio do func: " << f1.getSalario << endl;
 	cout << "======================\n";
 
 	//criando empresa

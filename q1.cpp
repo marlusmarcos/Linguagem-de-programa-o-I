@@ -9,6 +9,7 @@ private:
 	string nome;
 	float salario;
 	string data_contrato;
+	string cpf;
 public:
 	//Funcionario::Funcionario (string n, float s);
 	void setNome (string s);
@@ -16,8 +17,17 @@ public:
 	void setSalario (float s_);
 	float getSalario ();
 	void print_nome_salario ();
-
+	void setCpf (string c);
+	string getCpf ();
 };
+
+void Funcionario::setCpf (string c) {
+	cpf = c;
+}
+
+string Funcionario::getCpf () {
+	return cpf;
+}
 
 void Funcionario::setNome (string s) {
     nome = s;
@@ -45,7 +55,7 @@ private:
 	*/
 public:
 	Empresa(); //incicializei o contrutor, assim inicializando o vector empregados
-	 // mas o compilador diz que está errado e não estou conseguindo sair disso.
+	 // .
 	
     void setSeu_nome (string n_empresa); //setSeu_nome representa o nome da classe empresa
 	string getSeu_nome();
@@ -98,13 +108,75 @@ void Funcionario::print_nome_salario () {
 	cout << "Salario do Funcionario: " << this->salario << endl;
 };
 
-//fazer alterações na main, pois esse código abaixo está com as funções antigas, porque os métodos agora são privados
-//no metodo antigo, todos os objetos eram públicos.
 
 int main(int argc, char const *argv[])
 {
 	vector<Empresa> lista_empresa;
-	cout << "Testando o funcionamento\n";
+
+	cout << "==== Programming for enterprise ==== \n";
+	//cout << "Digite:\n 1) para criar uma empresa.\n" ;
+	//cout << "Digite:\n 2) para criar um funcionario.\n";  
+	//cout << "Digite:\n 1) para criar uma empresa."  
+	//cout << "Digite:\n 1) para criar uma empresa."  
+	//cout << "Digite:\n 1) para criar uma empresa."  
+	int i = -1;
+	float salario_main;
+	string n_main;
+	string ne_main;
+	string cnpj_main;
+	string cpf_main;
+	while (i != 0) {
+		cout << "Digite:\n 1) para criar uma empresa.\n" ;
+		cout << "Digite:\n 2) para criar um funcionario.\n";  
+		cout << "Digite 0 para sair do programa\n";
+		int controle;
+		cin >> controle;
+		if (controle == 0) {
+			break;
+		}
+		switch (controle) {
+			case 1:
+			cout << "Digite o nome da empresa\n";
+			cin >> ne_main;
+			cout << "Digite seu cnpj\n";
+			cin >> cnpj_main;
+			Empresa *microsoft = new Empresa;
+			microsoft->setSeu_nome(ne_main);
+			microsoft->setCnpj(cnpj_main);
+			lista_empresa.push_back (*microsoft);
+			cout << "Empresa " << microsoft->getSeu_nome() << " adicionada com sucesso!\n";
+			cout << "Digite 1 para adicionar funcionários ou 0 para voltar ao menu principal\n";
+			cin >> controle;
+			if (controle == 1) {
+				int add_func = 1;
+				while (add_func == 1) {
+					cout << "Digite o nome do Funcionario\n";
+					cin >> n_main;
+					cout << "Digite o salário do funcionario\n";
+					cin >> salario_main;
+					Funcionario *f1 = new Funcionario;
+					f1->setNome(n_main);
+					f1->setSalario(salario_main);
+					cout << "O funcionário " << f1->getNome() << " foi adicionado a empresa " << microsoft->getSeu_nome() << " com sucesso!\n";
+					cout << "Digite 1 para adicionar um novo funcionario ou 0 para voltar ao menu\n";
+					cin >> add_func;
+				}
+			}
+			break;
+		}
+
+	}
+	int cont = 0;
+	cout << "Listando empresas criadas\n";
+	for (int k=0; k <lista_empresa.size(); ++k) {
+		cont++;
+		cout << lista_empresa[k].getSeu_nome();
+	}
+
+
+cout << "Existem " << cont << " empresas.\n";
+
+	/*cout << "Testando o funcionamento\n";
 	//criando funcionário --- teste ---
 	Funcionario *f1 = new Funcionario;
 	f1->setNome("Marlus arcos");
@@ -139,6 +211,6 @@ int main(int argc, char const *argv[])
 		cout << "Digite 1 para continuar ou 0 para sair\n";
 		cin >> i;
 	}
-/**/
+*/
 	return 0;
 }

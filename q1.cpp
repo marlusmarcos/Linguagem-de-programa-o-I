@@ -73,6 +73,9 @@ public:
 	
 		empregados.push_back(*f);
 	}
+	
+	
+	
 	void Empresa::setSeu_nome (string n_empresa) {
 		seu_nome = n_empresa;
 	}
@@ -136,6 +139,7 @@ int main(int argc, char const *argv[])
 		if (controle == 0) {
 			break;
 		}
+		Funcionario *f1 = new Funcionario;
 		Empresa *microsoft = new Empresa;
 		switch (controle) {
 			case 1:
@@ -159,7 +163,7 @@ int main(int argc, char const *argv[])
 					Funcionario *f1 = new Funcionario;
 					f1->setNome(n_main);
 					f1->setSalario(salario_main);
-					//f1->push_back(*empregados);
+					microsoft->adicionarFuncionario(f1);
 					cout << "O funcionário " << f1->getNome() << " foi adicionado a empresa " << microsoft->getSeu_nome() << " com sucesso!\n";
 					cout << "Digite 1 para adicionar um novo funcionario ou 0 para voltar ao menu\n";
 					cin >> add_func;
@@ -167,7 +171,7 @@ int main(int argc, char const *argv[])
 			}
 			break;
 			
-			case 2: //alterar break;
+			case 2:
 				if (lista_empresa.size() == 0) {
 					cout << "\nNenhuma empresa foi criada até o momento\n";
 					break;
@@ -179,8 +183,17 @@ int main(int argc, char const *argv[])
 					cout << k+1 << "ª empresa: " << lista_empresa[k].getSeu_nome() <<"\n";
 				}
 				cin >> opc;
+				opc --;
 				cout << "\nAdicionando funcionário a empresa: " << lista_empresa[opc].getSeu_nome() << "\n";
-					
+				cout << "Digite o nome do Funcionario\n";
+				cin >> n_main;
+				cout << "Digite o salário do funcionario\n";
+				cin >> salario_main;
+				f1->setNome(n_main);
+				f1->setSalario(salario_main);				
+				lista_empresa[opc].adicionarFuncionario(f1);
+
+				break;
 			case 3: 
 			int cont = 0;
 			cout << "Listando empresas criadas\n";
@@ -238,4 +251,3 @@ int main(int argc, char const *argv[])
 		cin >> i;
 	}
 */
-

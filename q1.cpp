@@ -120,27 +120,29 @@ int main(int argc, char const *argv[])
 	//cout << "Digite:\n 1) para criar uma empresa."  
 	//cout << "Digite:\n 1) para criar uma empresa."  
 	int i = -1;
+	int opc; // variálvel para opção.
 	float salario_main;
 	string n_main;
 	string ne_main;
 	string cnpj_main;
 	string cpf_main;
 	while (i != 0) {
-		cout << "Digite:\n 1) para criar uma empresa.\n" ;
-		cout << "Digite:\n 2) para criar um funcionario.\n";  
-		cout << "Digite 0 para sair do programa\n";
+		cout << "Digite:\n1 para criar uma empresa.\n" ;
+		cout << "2 para criar um funcionario.\n"; 
+		cout << "3 para listar as empresas existentes.\n";  
+		cout << "0 para sair do programa\n";
 		int controle;
 		cin >> controle;
 		if (controle == 0) {
 			break;
 		}
+		Empresa *microsoft = new Empresa;
 		switch (controle) {
 			case 1:
 			cout << "Digite o nome da empresa\n";
 			cin >> ne_main;
 			cout << "Digite seu cnpj\n";
 			cin >> cnpj_main;
-			Empresa *microsoft = new Empresa;
 			microsoft->setSeu_nome(ne_main);
 			microsoft->setCnpj(cnpj_main);
 			lista_empresa.push_back (*microsoft);
@@ -157,24 +159,48 @@ int main(int argc, char const *argv[])
 					Funcionario *f1 = new Funcionario;
 					f1->setNome(n_main);
 					f1->setSalario(salario_main);
+					//f1->push_back(*empregados);
 					cout << "O funcionário " << f1->getNome() << " foi adicionado a empresa " << microsoft->getSeu_nome() << " com sucesso!\n";
 					cout << "Digite 1 para adicionar um novo funcionario ou 0 para voltar ao menu\n";
 					cin >> add_func;
 				}
 			}
 			break;
-		}
+			
+			case 2:
+				if (lista_empresa.size() == 0) {
+					cout << "\nNenhuma empresa foi criada até o momento\n";
+					break;
+				}
+				cout << "Deseja adicionar um funcionário a qual empresa?\n";
+				cout << "**********************************************";
+				cout << "\n******Listando empresas criadas******\n";
+				for (int k=0; k <lista_empresa.size(); ++k) {
+					cout << k+1 << "ª empresa: " << lista_empresa[k].getSeu_nome() <<"\n";
+				}
+				cin >> opc;
+				cout << "\nAdicionando funcionário a empresa: " << lista_empresa[opc].getSeu_nome() << "\n";
+					
+			case 3: 
+			int cont = 0;
+			cout << "Listando empresas criadas\n";
+			for (int k=0; k <lista_empresa.size(); ++k) {
+				cont++;
+				cout << k+1 << "ª empresa: " << lista_empresa[k].getSeu_nome() <<"\n";
+			}
+			
+			break; 
+			
+			
+		}//fim do switch
 
-	}
-	int cont = 0;
-	cout << "Listando empresas criadas\n";
-	for (int k=0; k <lista_empresa.size(); ++k) {
-		cont++;
-		cout << lista_empresa[k].getSeu_nome();
-	}
+	}//fim do while
 
 
-cout << "Existem " << cont << " empresas.\n";
+/*
+*/
+	return 0;
+}//fim da main
 
 	/*cout << "Testando o funcionamento\n";
 	//criando funcionário --- teste ---
@@ -212,5 +238,4 @@ cout << "Existem " << cont << " empresas.\n";
 		cin >> i;
 	}
 */
-	return 0;
-}
+

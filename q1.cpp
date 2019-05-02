@@ -167,7 +167,7 @@ int main(int argc, char const *argv[])
 			}
 			break;
 			
-			case 2:
+			case 2: //alterar break;
 				if (lista_empresa.size() == 0) {
 					cout << "\nNenhuma empresa foi criada até o momento\n";
 					break;

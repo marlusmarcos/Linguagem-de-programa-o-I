@@ -66,7 +66,7 @@ public:
 	//void print_nome_cnpj ();
 	//~Empresa();	
 	
-	string get_func (Funcionario *f);
+	Funcionario get_func(int id);
 };
     Empresa::Empresa () {
 	    vector<Funcionario> empregados;
@@ -80,10 +80,8 @@ public:
 		return empregados.size();
 	}
 	
-	string Empresa::get_func(Funcionario *f) {
-		cout << "Nome: " << f->getNome()<<endl;
-		cout << "Salário" << f->getSalario()<<endl;
-		
+	Funcionario Empresa::get_func(int id) {
+		return empregados[id];
 	}
 	
 	void Empresa::setSeu_nome (string n_empresa) {
@@ -149,7 +147,7 @@ public:
 					cin >> n_main;
 					cout << "Digite o salário do funcionario\n";
 					cin >> salario_main;
-					Funcionario *f1 = new Funcionario;
+					//Funcionario *f1 = new Funcionario;
 					f1->setNome(n_main);
 					f1->setSalario(salario_main);
 					microsoft->adicionarFuncionario(f1);
@@ -200,8 +198,7 @@ public:
 				cin >> opc;
 				opc--;
 				for (i=0; i < lista_empresa[opc].getsize(); ++i){
-				
-					lista_empresa[opc].empregados[i].get_func(f1);
+					cout << lista_empresa[opc].get_func(i).getNome() << endl;
 			}
 		}//fim do switch
 

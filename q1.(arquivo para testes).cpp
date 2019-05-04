@@ -18,6 +18,7 @@ public:
 	void print_nome_salario (Funcionario *f2);
 	void setCpf (string c);
 	string getCpf ();
+	void setPorcento (float s_p);
 };
 
 void Funcionario::setCpf (string c) {
@@ -43,6 +44,9 @@ float Funcionario::getSalario () {
 	return salario;
 }
 
+void Funcionario::setPorcento (float s_p) {
+	salario = salario+((salario*s_p)/100);
+}
 
 class Empresa //classe que representa a empresa
 {
@@ -103,11 +107,7 @@ public:
 	vector<Empresa> lista_empresa;
 
 	cout << "==== Programming for enterprise ==== \n";
-	//cout << "Digite:\n 1) para criar uma empresa.\n" ;
-	//cout << "Digite:\n 2) para criar um funcionario.\n";  
-	//cout << "Digite:\n 1) para criar uma empresa."  
-	//cout << "Digite:\n 1) para criar uma empresa."  
-	//cout << "Digite:\n 1) para criar uma empresa."  
+	float porcentos;
 	int i = -1;
 	int opc; // variálvel para opção.
 	float salario_main;
@@ -138,7 +138,7 @@ public:
 			microsoft->setCnpj(cnpj_main);
 			lista_empresa.push_back (*microsoft);
 			cout << "Empresa " << microsoft->getSeu_nome() << " adicionada com sucesso!\n";
-			cout << "Digite 1 para adicionar funcionários ou 0 para voltar ao menu principal\n";
+			/*cout << "Digite 1 para adicionar funcionários ou 0 para voltar ao menu principal\n";
 			cin >> controle;
 			if (controle == 1) {
 				int add_func = 1;
@@ -147,7 +147,7 @@ public:
 					cin >> n_main;
 					cout << "Digite o salário do funcionario\n";
 					cin >> salario_main;
-					//Funcionario *f1 = new Funcionario;
+					Funcionario *f1 = new Funcionario;
 					f1->setNome(n_main);
 					f1->setSalario(salario_main);
 					microsoft->adicionarFuncionario(f1);
@@ -155,7 +155,7 @@ public:
 					cout << "Digite 1 para adicionar um novo funcionario ou 0 para voltar ao menu\n";
 					cin >> add_func;
 				}
-			}
+			}*/
 			break;
 			
 			case 2:
@@ -199,7 +199,27 @@ public:
 				opc--;
 				for (i=0; i < lista_empresa[opc].getsize(); ++i){
 					cout << lista_empresa[opc].get_func(i).getNome() << endl;
-			}
+					cout << lista_empresa[opc].get_func(i).getSalario() << endl;
+				}
+			break;
+			case 5:
+				cout << "*** Qual empresa vocẽ deseja adicionar acrescimo aos funcionários?? ***\n";
+				for (int k=0; k <lista_empresa.size(); ++k) {
+					cout << k+1 << "ª empresa: " << lista_empresa[k].getSeu_nome() <<"\n\n";
+				}
+				cin >> opc;
+				opc--;
+				cout << "Quantos porcentos você deseja adicionar aos funcionários?\n";
+				cin >> porcentos;
+				for (i=0; i < lista_empresa[opc].getsize(); ++i){
+					cout <<"Nome do funcionário: " << lista_empresa[opc].get_func(i).getNome() << endl;
+					cout <<"Salário anterior: " << lista_empresa[opc].get_func(i).getSalario() << endl;
+					*f1 = lista_empresa[opc].get_func(i);
+					f1->setPorcento(porcentos);
+					cout <<"Salário atual: " << f1->getSalario() << endl;
+				}
+				break;
+
 		}//fim do switch
 
 	}//fim do while

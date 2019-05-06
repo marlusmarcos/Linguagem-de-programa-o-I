@@ -215,7 +215,7 @@ public:
 					cout << lista_empresa[opc].get_func(i).getNome() << endl;
 					cout << lista_empresa[opc].get_func(i).getSalario() << endl;
 					cout << lista_empresa[opc].get_func(i).getCpf() << endl;
-					cout << "--*--*--*--*--*--*--*--*--*--*--*--*\n";
+					cout << "\n--*--*--*--*--*--*--*--*--*--*--*--*\n";
 
 				}
 			break;

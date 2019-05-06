@@ -132,9 +132,10 @@ public:
 		switch (controle) {
 			case 1:
 				cout << "Digite o nome da empresa\n";
-				cin >> ne_main;
+				getline (cin, ne_main);
+				getline (cin, ne_main);
 				cout << "Digite seu cnpj\n";
-				cin >> cnpj_main;
+				getline (cin, cnpj_main);
 				microsoft->setSeu_nome(ne_main);
 				microsoft->setCnpj(cnpj_main);
 				lista_empresa.push_back (*microsoft);
@@ -174,11 +175,15 @@ public:
 				opc --;
 				cout << "\nAdicionando funcionário a empresa: " << lista_empresa[opc].getSeu_nome() << "\n";
 				cout << "Digite o nome do Funcionario\n";
-				cin >> n_main;
+				getline (cin,n_main);
+				getline (cin,n_main);
 				cout << "Digite o salário do funcionario\n";
 				cin >> salario_main;
+				cout << "Digite o CPF do funcionário:\n";
+				cin >> cpf_main;
 				f1->setNome(n_main);
 				f1->setSalario(salario_main);
+				f1->setCpf(cpf_main);
 				lista_empresa[opc].adicionarFuncionario(f1);
 				break;
 			case 3: 
@@ -209,6 +214,9 @@ public:
 				for (i=0; i < lista_empresa[opc].getsize(); ++i){
 					cout << lista_empresa[opc].get_func(i).getNome() << endl;
 					cout << lista_empresa[opc].get_func(i).getSalario() << endl;
+					cout << lista_empresa[opc].get_func(i).getCpf() << endl;
+					cout << "--*--*--*--*--*--*--*--*--*--*--*--*\n";
+
 				}
 			break;
 			case 5:

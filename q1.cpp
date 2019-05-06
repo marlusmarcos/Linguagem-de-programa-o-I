@@ -19,7 +19,14 @@ public:
 	void setCpf (string c);
 	string getCpf ();
 	void setPorcento (float s_p);
+	bool compare_cpf (string c1, string c2);
 };
+
+bool Funcionario::compare_cpf (string c1, string c2) {
+	 if (c1.compare(c2) == 0) {
+	 	return true;
+	 }
+}
 
 void Funcionario::setCpf (string c) {
 	cpf = c;
@@ -67,8 +74,7 @@ public:
 	int getsize ();
 
 	void adicionarFuncionario(Funcionario *f); // aqui a função para adicionar, mas o "empregados" não está funcionando
-	//void print_nome_cnpj ();
-	//~Empresa();	
+	
 	
 	Funcionario get_func(int id);
 };
@@ -170,12 +176,24 @@ public:
 					cin >> salario_main;
 					cout << "Digite o CPF do funcionário:\n";
 					cin >> cpf_main;
+					int cont = 0;
+					for (int k = 0; k < lista_empresa[opc].getsize(); ++k) {
+						if (lista_empresa[opc].get_func(k).getCpf().compare(cpf_main) == 0){
+							cout << "O funcionário " << n_main << " já trabalha na empresa!\n";
+							cont = 1;
+							
+						}
+						
+					}
+					if (cont == 0) {
+					
 					f1->setNome(n_main);
 					f1->setSalario(salario_main);
 					f1->setCpf(cpf_main);
 					lista_empresa[opc].adicionarFuncionario(f1);
 					cout << "Digite 1 para adicionar um novo func ou 0 para votar ao menu\n";
 					cin >> controle;
+					}
 				}
 			
 				break;
@@ -221,7 +239,7 @@ public:
 				cout << "Nenhuma empresa foi criada até o momento!\n";
 				break;
 				}
-				cout << "*** Qual empresa vocẽ deseja adicionar acrescimo aos funcionários?? ***\n";
+				cout << "*** Qual empresa voc? deseja adicionar acrescimo aos funcionários?? ***\n";
 				for (int k=0; k <lista_empresa.size(); ++k) {
 					cout << k+1 << "ª empresa: " << lista_empresa[k].getSeu_nome() <<"\n\n";
 				}

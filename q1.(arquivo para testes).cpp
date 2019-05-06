@@ -120,6 +120,7 @@ public:
 		cout << "2 para criar um funcionario.\n"; 
 		cout << "3 para listar as empresas existentes.\n";  
 		cout << "4 para listar as funcionários existentes de uma empresa.\n";  
+		cout << "5 Para dar acrescimo aos funcionários de uma empresa.\n";
 		cout << "0 para sair do programa\n";
 		int controle;
 		cin >> controle;
@@ -130,14 +131,14 @@ public:
 		Empresa *microsoft = new Empresa;
 		switch (controle) {
 			case 1:
-			cout << "Digite o nome da empresa\n";
-			cin >> ne_main;
-			cout << "Digite seu cnpj\n";
-			cin >> cnpj_main;
-			microsoft->setSeu_nome(ne_main);
-			microsoft->setCnpj(cnpj_main);
-			lista_empresa.push_back (*microsoft);
-			cout << "Empresa " << microsoft->getSeu_nome() << " adicionada com sucesso!\n";
+				cout << "Digite o nome da empresa\n";
+				cin >> ne_main;
+				cout << "Digite seu cnpj\n";
+				cin >> cnpj_main;
+				microsoft->setSeu_nome(ne_main);
+				microsoft->setCnpj(cnpj_main);
+				lista_empresa.push_back (*microsoft);
+				cout << "Empresa " << microsoft->getSeu_nome() << " adicionada com sucesso!\n";
 			/*cout << "Digite 1 para adicionar funcionários ou 0 para voltar ao menu principal\n";
 			cin >> controle;
 			if (controle == 1) {
@@ -182,6 +183,10 @@ public:
 				break;
 			case 3: 
 			//int cont = 0;
+			if (lista_empresa.size() == 0) {
+				cout << "Nenhuma empresa foi criada até o momento!\n";
+				break;
+			}
 			cout << "Listando empresas criadas\n";
 			for (int k=0; k <lista_empresa.size(); ++k) {
 				//cont++;
@@ -190,6 +195,10 @@ public:
 			
 			break; 
 			case 4:
+				if (lista_empresa.size() == 0) {
+				cout << "Nenhuma empresa foi criada até o momento!\n";
+				break;
+				}
 				cout << "Escoha uma dessas empresas criadas: \n\n";
 				cout << "Listando empresas criadas\n";
 				for (int k=0; k <lista_empresa.size(); ++k) {
@@ -203,6 +212,10 @@ public:
 				}
 			break;
 			case 5:
+				if (lista_empresa.size() == 0) {
+				cout << "Nenhuma empresa foi criada até o momento!\n";
+				break;
+				}
 				cout << "*** Qual empresa vocẽ deseja adicionar acrescimo aos funcionários?? ***\n";
 				for (int k=0; k <lista_empresa.size(); ++k) {
 					cout << k+1 << "ª empresa: " << lista_empresa[k].getSeu_nome() <<"\n\n";

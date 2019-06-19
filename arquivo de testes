@@ -138,5 +138,12 @@ int main () {
 	f2->setNivel(2);
 	cout << f2->getNome() << " seu Nivel é : " << f2->getNivel();
 	 
-	
+	cout << "Criando 3 Tratadores\n";
+	string nome;
+	int i;
+	k =1
+	while (k) {
+		cin << nome;
+		cin << i;
+	} 
 }

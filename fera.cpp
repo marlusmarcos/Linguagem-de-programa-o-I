@@ -110,17 +110,18 @@ class Veterinario : public Funcionario {
 class Animal {
 	protected:
 		int id;
-		std::string classe;
-		std::string nome_cientifico;
+		string classe;
+		string nome_cientifico;
 		char sexo;
 		double tamanho;
-		std::string dieta;
-		std::string nome_batismo;
+		string dieta;
+		string nome_batismo;
 		Veterinario veterinario;
 		Tratador tratador;
 		
 	public:
-		Animal();
+		Animal(void);
+		Animal(int id, string classe, string nome_cientifico, char sexo, int tamanho, string dieta, string nome_batismo);
 		~Animal();
 		void setId(int id);
 		int getId();
@@ -208,19 +209,39 @@ class Anfibio : public Animal {
 
 Anfibio::Anfibio(){};
 Anfibio::~Anfibio(){};
+class AnfibioExotico : public Anfibio {
+
+public:
+
+	AnfibioExotico();
+
+	~AnfibioExotico();
+
+};
+class AnfibioNativo : public Anfibio {
+
+public:
+
+	AnfibioNativo();
+
+	~AnfibioNativo();
+
+};
 
 class Mamifero : public Animal {
 	protected:
 		std::string cor_pelo;
 	public:
-		Mamifero();
+		Mamifero(void);
+		Mamifero(int, string, string, char, int, string, string, string);
 		~Mamifero();
 		//void setCorPelo();
 		//std::string getCorPelo();
 };
 
 
-Mamifero::Mamifero(){};
+
+//Mamifero::Mamifero(){};
 Mamifero::~Mamifero(){};
 
 class Reptil : public Animal {
@@ -235,6 +256,129 @@ class Reptil : public Animal {
 Reptil::Reptil(){};
 Reptil::~Reptil(){};
 
+class Ave : public Animal {
+	protected:
+		double tamanho_do_bico;
+		double envergadura_asas;
+	public:
+		Ave();
+		~Ave();
+};
+
+class CriarAnimal { //essa classe serve para um suporte aoo menu, é aqui onde será colocada no map o animal
+	private:
+		int id;
+		string classe;
+		string nome_cientifico;
+		char sexo;
+		double tamanho;
+		string dieta;
+		string nome_batismo;
+	public:
+		void mamifero();
+	//	void ave();
+	//	void reptil();
+	//	void anfibio();
+};
+void CriarAnimal::mamifero(){
+	string cor_do_pelo;
+
+	cout<< " Digite o id do animal: " << endl;
+	cin >> id;
+	cout<< " Digite o nome cientifico: " << endl;
+	cin >> nome_cientifico;
+	cout<< " Digite o sexo: " << endl;
+	cin >> sexo;
+	cout<< " Digite o tamanho: " << endl;
+	cin >> tamanho;
+	cout<< " Digite a dieta: " << endl;
+	cin >> dieta;
+	cout<< " Digite o nome do batismo: " << endl;
+	cin >> nome_batismo;
+	cout<< " Digite a cor do pelo: " << endl;
+	cin >> cor_do_pelo;
+
+	classe = "mamifero";
+	
+	//add no map de mamifero
+}
+
+class Menu {
+	public:
+		void cadastrarAnimal();
+		void removerAnimal();
+		void alterarAnimal();
+		void consultarAnimal();
+		void cadastrarFuncionario();
+		void removerFuncionario();
+		void alterarFuncionario();
+		void consultarFuncionario();
+};
+
+
+
+void Menu::cadastrarAnimal(){
+
+	int entrada = 0;
+	CriarAnimal nome;
+
+	cout<<"1. Mamifero " << endl;
+	cout<<"2. Ave " << endl;
+	cout<<"3. Anfibio " << endl;
+	cout<<"4. Reptil " << endl;
+	cout<<"ESCOLHA A OPCAO : " << endl;
+	cin>>entrada;
+
+
+	switch(entrada){
+
+	case 1:
+		cout << "Estamos na opcao " << entrada;
+		nome.mamifero();
+		break;
+/*	case '2':
+		cout << "Estamos na opcao " << entrada;
+		nome.ave();
+		break;
+	case '3':
+		cout << "Estamos na opcao " << entrada;
+		nome.anfibio();
+		break;
+	case '4':
+		cout << "Estamos na opcao " << entrada;
+		nome.reptil();
+		break;
+	default: 
+		cout << "Opcao " << entrada << " invalida. ";
+		return cadastrarAnimal();
+		break;
+		
+	*/
+	}
+};
+
+
+void Menu::removerAnimal(){
+
+}
+void Menu::alterarAnimal(){
+
+}
+void Menu::consultarAnimal(){
+
+}
+void Menu::cadastrarFuncionario(){
+
+}
+void Menu::removerFuncionario(){
+
+}
+void Menu::alterarFuncionario(){
+
+}
+void Menu::consultarFuncionario(){
+
+}
 
 	
 int main () {
@@ -279,6 +423,14 @@ int main () {
         k++;
 	} 
     *f2=mapatrat[2];
-    cout << f2->getNome() << "\n";
+    cout << f2->getNome() << " deu certo \n";
+
+
+	 cout << "TESTANDO MAMÍFERO KKK /// \n";
+	map <int, Mamifero> mamapmamifero;
+	Menu ccc;
+	ccc.cadastrarAnimal();
+
+
     return 0;
 }

@@ -230,11 +230,11 @@ public:
 
 class Mamifero : public Animal {
 	protected:
-		std::string cor_pelo;
+		string cor_pelo;
 	public:
-		Mamifero(void);
-		Mamifero(int, string, string, char, int, string, string, string);
-		~Mamifero();
+		//Mamifero(void);
+		//Mamifero(int, string, string, char, int, string, string, string);
+		//~Mamifero();
 		//void setCorPelo();
 		//std::string getCorPelo();
 };
@@ -242,7 +242,7 @@ class Mamifero : public Animal {
 
 
 //Mamifero::Mamifero(){};
-Mamifero::~Mamifero(){};
+//Mamifero::~Mamifero(){};
 
 class Reptil : public Animal {
 	protected:
@@ -299,6 +299,9 @@ void CriarAnimal::mamifero(){
 	cin >> cor_do_pelo;
 
 	classe = "mamifero";
+	Mamifero *m1 = new Mamifero;
+	m1->setId(id);
+	cout << "o id do animal é: " << m1->getId() <<"\n";
 	
 	//add no map de mamifero
 }
@@ -428,6 +431,7 @@ int main () {
 
 	 cout << "TESTANDO MAMÍFERO KKK /// \n";
 	map <int, Mamifero> mamapmamifero;
+	//Mamifero *m1 = new Mamifero;
 	Menu ccc;
 	ccc.cadastrarAnimal();
 

@@ -199,16 +199,26 @@ class Anfibio : public Animal {
 		int total_de_mudas;
 		Data ultima_muda;
 	public:
-		Anfibio();
-		~Anfibio();
+		Anfibio(){};
+		Anfibio(int id , string nome_cientifico, char sexo, int tamanho, string dieta, string nome_batismo);
+		
 		//void setTotalMudas();
 		//int getTotalMudas();
 		//void setData();
 		//Data getData();
 };
 
-Anfibio::Anfibio(){};
-Anfibio::~Anfibio(){};
+Anfibio::Anfibio(int id , string nome_cientifico, char sexo, int tamanho, string dieta, string nome_batismo) {
+	this->id=id;
+	this->nome_cientifico = nome_cientifico;
+	this->sexo=sexo;
+	this->tamanho=tamanho;
+	this->dieta=dieta;
+	this->nome_batismo = nome_batismo;	
+};
+
+
+
 class AnfibioExotico : public Anfibio {
 
 public:
@@ -232,17 +242,24 @@ class Mamifero : public Animal {
 	protected:
 		string cor_pelo;
 	public:
-		//Mamifero(void);
-		//Mamifero(int, string, string, char, int, string, string, string);
+		Mamifero(){};
+		Mamifero(int id , string nome_cientifico, char sexo, int tamanho, string dieta, string nome_batismo, string cor_pelo);
 		//~Mamifero();
 		//void setCorPelo();
 		//std::string getCorPelo();
 };
 
+	Mamifero::Mamifero(int id , string nome_cientifico, char sexo, int tamanho, string dieta, string nome_batismo, string cor_pelo){
+		this->id = id;
+		//this-> classe = classe;
+		this->nome_cientifico = nome_cientifico;
+		this->sexo=sexo;
+		this->tamanho=tamanho;
+		this->dieta=dieta;
+		this->nome_batismo = nome_batismo;
+		
+	}
 
-
-//Mamifero::Mamifero(){};
-//Mamifero::~Mamifero(){};
 
 class Reptil : public Animal {
 	protected:
@@ -264,6 +281,30 @@ class Ave : public Animal {
 		//Ave();
 		//~Ave();
 };
+/*void Inserir(int a, int b){
+    //aloca a memória para a classe derivada e inicializa seu construtor
+    Derivada * derivada = new Derivada(a, b);
+
+    //converte o ponteiro de classe Derivada para de classe Base (upcasting)
+    Base * base = derivada;
+
+    //cria um map para armazenar objetos das classes derivadas
+    map<int, Base *> ClassesDerivadas;
+
+    //insere um par chave-ponteiro para base no map
+    ClassesDerivadas.insert(pair<int, Base *>(1, base));
+
+    for(auto it : ClassesDerivadas){
+        /*converte o ponteiro da classe base para um ponteiro classe derivada
+        só funciona se a base tiver métodos virtuais*/
+     //   Derivada * derivada = dynamic_cast<Derivada*>(it.second);
+
+        //imprime os valores dos membros da classe derivada
+ /*       cout << derivada->getValueBase() << endl;
+        cout << derivada->getValueDerivada() << endl;
+    }
+    delete derivada;
+} */
 
 class CriarAnimal { //essa classe serve para um suporte aoo menu, é aqui onde será colocada no map o animal
 	private:
@@ -299,11 +340,33 @@ void CriarAnimal::mamifero(){
 	cin >> cor_do_pelo;
 
 	classe = "mamifero";
-	Mamifero *m1 = new Mamifero;
-	m1->setId(id);
+	Mamifero *m1 = new Mamifero(id ,nome_cientifico,sexo,tamanho,dieta,nome_batismo,cor_do_pelo);
 	cout << "o id do animal é: " << m1->getId() <<"\n";
 	
 	//add no map de mamifero
+}
+void CriarAnimal::anfibio() {
+	//toal de mudas
+
+	cout<< " Digite o id do animal: " << endl;
+	cin >> id;
+	cout<< " Digite o nome cientifico: " << endl;
+	cin >> nome_cientifico;
+	cout<< " Digite o sexo: " << endl;
+	cin >> sexo;
+	cout<< " Digite o tamanho: " << endl;
+	cin >> tamanho;
+	cout<< " Digite a dieta: " << endl;
+	cin >> dieta;
+	cout<< " Digite o nome do batismo: " << endl;
+	cin >> nome_batismo;
+
+
+	classe = "Anfibio";
+	Anfibio *m1 = new Anfibio(id ,nome_cientifico,sexo,tamanho,dieta,nome_batismo);
+	cout << "o id do animal é: " << m1->getId() <<"\n";
+	
+	//add no map de manfibio
 }
 
 void CriarAnimal::ave(){
@@ -333,7 +396,7 @@ void CriarAnimal::ave(){
 
 }
 
-void CriarAnimal::anfibio(){
+/*void CriarAnimal::anfibio(){
 	int total_de_muda, dia, mes, ano;
 
 	classe = "anfibio";
@@ -365,7 +428,7 @@ void CriarAnimal::anfibio(){
 	m1->setId(id);
 	cout << "o id do animal é: " << m1->getId() <<"\n";
 
-}
+}*/
 
 void CriarAnimal::reptil(){
 	bool venenoso;
@@ -405,7 +468,6 @@ class Menu {
 		void alterarFuncionario();
 		void consultarFuncionario();
 };
-
 
 
 void Menu::cadastrarAnimal(){
@@ -473,7 +535,7 @@ void Menu::consultarFuncionario(){
 
 	
 int main () {
-	Veterinario *f1 = new Veterinario;
+/*	Veterinario *f1 = new Veterinario;
 	f1->setNome("Marcos");
 	map <int, Veterinario> mapavet;
 	//cout << mapavet.size();
@@ -515,9 +577,9 @@ int main () {
 	} 
     *f2=mapatrat[2];
     cout << f2->getNome() << " deu certo \n";
+*/
 
-
-	 cout << "TESTANDO MAMÍFERO KKK /// \n";
+	 cout << "TESTANDO Animais, até agora Mamiferos e Anfibios ok /// \n";
 	map <int, Mamifero> mamapmamifero;
 	//Mamifero *m1 = new Mamifero;
 	Menu ccc;

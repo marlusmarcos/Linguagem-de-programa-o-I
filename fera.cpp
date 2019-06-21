@@ -261,8 +261,8 @@ class Ave : public Animal {
 		double tamanho_do_bico;
 		double envergadura_asas;
 	public:
-		Ave();
-		~Ave();
+		//Ave();
+		//~Ave();
 };
 
 class CriarAnimal { //essa classe serve para um suporte aoo menu, é aqui onde será colocada no map o animal
@@ -276,9 +276,9 @@ class CriarAnimal { //essa classe serve para um suporte aoo menu, é aqui onde s
 		string nome_batismo;
 	public:
 		void mamifero();
-	//	void ave();
-	//	void reptil();
-	//	void anfibio();
+		void ave();
+		void reptil();
+		void anfibio();
 };
 void CriarAnimal::mamifero(){
 	string cor_do_pelo;
@@ -304,6 +304,94 @@ void CriarAnimal::mamifero(){
 	cout << "o id do animal é: " << m1->getId() <<"\n";
 	
 	//add no map de mamifero
+}
+
+void CriarAnimal::ave(){
+	double envergadura_asas;
+	double tamanho_do_bico;
+	classe = "ave";
+	cout<< " Digite o nome do animal: " << endl;
+	cin >> id;
+	cout<< " Digite o nome cientifico: " << endl;
+	cin >> nome_cientifico;
+	cout<< " Digite o sexo: " << endl;
+	cin >> sexo;
+	cout<< " Digite o tamanho: " << endl;
+	cin >> tamanho;
+	cout<< " Digite a dieta: " << endl;
+	cin >> dieta;
+	cout<< " Digite o nome do batismo " << endl;
+	cin >> nome_batismo;
+	cout<< " Digite o tamanho do bico: " << endl;
+	cin >> tamanho_do_bico;
+	cout<< " Digite a envergadura das asas: " << endl;
+	cin >> envergadura_asas;
+	
+	Ave *m1 = new Ave;
+	m1->setId(id);
+	cout << "o id do animal é: " << m1->getId() <<"\n";
+
+}
+
+void CriarAnimal::anfibio(){
+	int total_de_muda, dia, mes, ano;
+
+	classe = "anfibio";
+	cout<< " Digite o id do animal: " << endl;
+	cin >> id;
+	cout<< " Digite o nome cientifico: " << endl;
+	cin >> nome_cientifico;
+	cout<< " Digite o sexo: " << endl;
+	cin >> sexo;
+	cout<< " Digite o tamanho: " << endl;
+	cin >> tamanho;
+	cout<< " Digite a dieta: " << endl;
+	cin >> dieta;
+	cout<< " Digite o nome do batismo " << endl;
+	cin >> nome_batismo;
+	cout<< " Digite o total de mudas: " << endl;
+	cin >> total_de_muda;
+	cout<< " Digite o dia da ultima muda: " << endl;
+	cin >> dia;
+	cout<< " Digite o mes da ultima muda: " << endl;
+	cin >> mes;
+	cout<< " Digite o ano da ultima muda: " << endl;
+	cin >> ano;
+
+	//Date ultima_muda(dia,mes,ano);
+
+	//nimal* anfibio = new Anfibio(id, classe, nome_cientifico, sexo, tamanho, dieta, nome_batismo , total_de_muda, ultima_muda);
+	Anfibio *m1 = new Anfibio;
+	m1->setId(id);
+	cout << "o id do animal é: " << m1->getId() <<"\n";
+
+}
+
+void CriarAnimal::reptil(){
+	bool venenoso;
+	string tipo_veneno;
+	classe = "reptil";
+	cout<< " Digite o nome do animal: " << endl;
+	cin >> id;
+	cout<< " Digite o nome cientifico: " << endl;
+	cin >> nome_cientifico;
+	cout<< " Digite o sexo: " << endl;
+	cin >> sexo;
+	cout<< " Digite o tamanho: " << endl;
+	cin >> tamanho;
+	cout<< " Digite a dieta: " << endl;
+	cin >> dieta;
+	cout<< " Digite o nome do batismo " << endl;
+	cin >> nome_batismo;
+	cout<< " Digite false caso não seja venenoso e true caso seja venenoso: " << endl;
+	cin >> venenoso;
+	cout<< " Digite o tipo do veneno " << endl;
+	cin >> tipo_veneno;
+	Reptil *m1 = new Reptil;
+	m1->setId(id);
+	cout << "o id do animal é: " << m1->getId() <<"\n";
+
+	
 }
 
 class Menu {
@@ -336,27 +424,27 @@ void Menu::cadastrarAnimal(){
 	switch(entrada){
 
 	case 1:
-		cout << "Estamos na opcao " << entrada;
+		cout << "opcao " << entrada;
 		nome.mamifero();
 		break;
-/*	case '2':
-		cout << "Estamos na opcao " << entrada;
+	case 2:
+		cout << " opcao " << entrada;
 		nome.ave();
 		break;
-	case '3':
-		cout << "Estamos na opcao " << entrada;
+	case 3:
+		cout << "opcao " << entrada;
 		nome.anfibio();
 		break;
-	case '4':
-		cout << "Estamos na opcao " << entrada;
+	case 4:
+		cout << "opcao " << entrada;
 		nome.reptil();
 		break;
 	default: 
-		cout << "Opcao " << entrada << " invalida. ";
+		cout << "Opcao  " << entrada << " invalida. ";
 		return cadastrarAnimal();
 		break;
 		
-	*/
+	
 	}
 };
 

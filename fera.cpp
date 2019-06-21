@@ -264,14 +264,24 @@ class Mamifero : public Animal {
 class Reptil : public Animal {
 	protected:
 		bool venenoso;
-		std::string tipo_venenoso;
+		string tipo_venenoso;
 	public:
-		Reptil();
-		~Reptil();
+		Reptil(){};
+		Reptil(int id , string nome_cientifico, char sexo, int tamanho, string dieta, string nome_batismo,  bool venenoso, string tipo_venenoso);
+		
 };
-
-Reptil::Reptil(){};
-Reptil::~Reptil(){};
+	Reptil::Reptil(int id , string nome_cientifico, char sexo, int tamanho, string dieta, string nome_batismo, bool venenoso, string tipo_venenoso){
+		this->id = id;
+		//this-> classe = classe;
+		this->nome_cientifico = nome_cientifico;
+		this->sexo=sexo;
+		this->tamanho=tamanho;
+		this->dieta=dieta;
+		this->nome_batismo = nome_batismo;
+		this->venenoso=venenoso;
+		this->tipo_venenoso=tipo_venenoso;
+		
+	}
 
 class Ave : public Animal {
 	protected:
@@ -369,6 +379,38 @@ void CriarAnimal::anfibio() {
 	//add no map de manfibio
 }
 
+
+void CriarAnimal::reptil() {
+	bool venenoso;
+	string tipo_venenoso;
+
+	cout<< " Digite o id do animal: " << endl;
+	cin >> id;
+	cout<< " Digite o nome cientifico: " << endl;
+	cin >> nome_cientifico;
+	cout<< " Digite o sexo: " << endl;
+	cin >> sexo;
+	cout<< " Digite o tamanho: " << endl;
+	cin >> tamanho;
+	cout<< " Digite a dieta: " << endl;
+	cin >> dieta;
+	cout<< " Digite o nome do batismo: " << endl;
+	cin >> nome_batismo;
+	cout << "Digite 1 para venenoso ou 0 para não venenoso" << endl;
+	cin >> venenoso;
+	cout << "Digite o tipo do neveno" << endl;
+	cin >> tipo_venenoso;
+
+
+	classe = "reptil";
+	Reptil *m1 = new Reptil(id ,nome_cientifico,sexo,tamanho,dieta,nome_batismo, venenoso, tipo_venenoso);
+	cout << "o id do animal é: " << m1->getId() <<"\n";
+	
+	//add no map de manfibio
+}
+
+
+
 void CriarAnimal::ave(){
 	double envergadura_asas;
 	double tamanho_do_bico;
@@ -428,7 +470,7 @@ void CriarAnimal::ave(){
 	m1->setId(id);
 	cout << "o id do animal é: " << m1->getId() <<"\n";
 
-}*/
+}*
 
 void CriarAnimal::reptil(){
 	bool venenoso;
@@ -455,7 +497,7 @@ void CriarAnimal::reptil(){
 	cout << "o id do animal é: " << m1->getId() <<"\n";
 
 	
-}
+} */
 
 class Menu {
 	public:

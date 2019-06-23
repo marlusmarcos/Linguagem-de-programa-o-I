@@ -288,9 +288,25 @@ class Ave : public Animal {
 		double tamanho_do_bico;
 		double envergadura_asas;
 	public:
-		//Ave();
-		//~Ave();
+        Ave(){}
+        Ave(int id, string nome_cientifico, char sexo, int tamanho, string dieta, string nome_batismo, double tamanho_do_bico, double envergadura_asas);
+		
 };
+
+
+    Ave::Ave(int id, string nome_cientifico, char sexo, int tamanho, string dieta, string nome_batismo, double tamanho_do_bico, double envergadura_asas) {
+        this->id=id;
+        this->nome_cientifico = nome_cientifico;
+		this->sexo=sexo;
+		this->tamanho=tamanho;
+		this->dieta=dieta;
+		this->nome_batismo = nome_batismo;
+        this->tamanho_do_bico=tamanho_do_bico;
+        this->envergadura_asas=envergadura_asas;
+    }
+		
+
+
 /*void Inserir(int a, int b){
     //aloca a memória para a classe derivada e inicializa seu construtor
     Derivada * derivada = new Derivada(a, b);
@@ -305,7 +321,7 @@ class Ave : public Animal {
     ClassesDerivadas.insert(pair<int, Base *>(1, base));
 
     for(auto it : ClassesDerivadas){
-        /*converte o ponteiro da classe base para um ponteiro classe derivada
+        //converte o ponteiro da classe base para um ponteiro classe derivada
         só funciona se a base tiver métodos virtuais*/
      //   Derivada * derivada = dynamic_cast<Derivada*>(it.second);
 
@@ -316,7 +332,7 @@ class Ave : public Animal {
     delete derivada;
 } */
 
-class CriarAnimal { //essa classe serve para um suporte aoo menu, é aqui onde será colocada no map o animal
+class GerenciarAnimal { //essa classe serve para um suporte aoo menu, é aqui onde será colocada no map o animal
 	private:
 		int id;
 		string classe;
@@ -331,7 +347,7 @@ class CriarAnimal { //essa classe serve para um suporte aoo menu, é aqui onde s
 		void reptil();
 		void anfibio();
 };
-void CriarAnimal::mamifero(){
+void GerenciarAnimal::mamifero(){
 	string cor_do_pelo;
 
 	cout<< " Digite o id do animal: " << endl;
@@ -355,7 +371,7 @@ void CriarAnimal::mamifero(){
 	
 	//add no map de mamifero
 }
-void CriarAnimal::anfibio() {
+void GerenciarAnimal::anfibio() {
 	//toal de mudas
 
 	cout<< " Digite o id do animal: " << endl;
@@ -380,7 +396,7 @@ void CriarAnimal::anfibio() {
 }
 
 
-void CriarAnimal::reptil() {
+void GerenciarAnimal::reptil() {
 	bool venenoso;
 	string tipo_venenoso;
 
@@ -411,7 +427,7 @@ void CriarAnimal::reptil() {
 
 
 
-void CriarAnimal::ave(){
+void GerenciarAnimal::ave(){
 	double envergadura_asas;
 	double tamanho_do_bico;
 	classe = "ave";
@@ -432,75 +448,17 @@ void CriarAnimal::ave(){
 	cout<< " Digite a envergadura das asas: " << endl;
 	cin >> envergadura_asas;
 	
-	Ave *m1 = new Ave;
-	m1->setId(id);
+	Ave *m1 = new Ave(id, nome_cientifico, sexo, tamanho, dieta, nome_batismo, tamanho_do_bico, envergadura_asas);
+
 	cout << "o id do animal é: " << m1->getId() <<"\n";
 
 }
 
-/*void CriarAnimal::anfibio(){
-	int total_de_muda, dia, mes, ano;
 
-	classe = "anfibio";
-	cout<< " Digite o id do animal: " << endl;
-	cin >> id;
-	cout<< " Digite o nome cientifico: " << endl;
-	cin >> nome_cientifico;
-	cout<< " Digite o sexo: " << endl;
-	cin >> sexo;
-	cout<< " Digite o tamanho: " << endl;
-	cin >> tamanho;
-	cout<< " Digite a dieta: " << endl;
-	cin >> dieta;
-	cout<< " Digite o nome do batismo " << endl;
-	cin >> nome_batismo;
-	cout<< " Digite o total de mudas: " << endl;
-	cin >> total_de_muda;
-	cout<< " Digite o dia da ultima muda: " << endl;
-	cin >> dia;
-	cout<< " Digite o mes da ultima muda: " << endl;
-	cin >> mes;
-	cout<< " Digite o ano da ultima muda: " << endl;
-	cin >> ano;
-
-	//Date ultima_muda(dia,mes,ano);
-
-	//nimal* anfibio = new Anfibio(id, classe, nome_cientifico, sexo, tamanho, dieta, nome_batismo , total_de_muda, ultima_muda);
-	Anfibio *m1 = new Anfibio;
-	m1->setId(id);
-	cout << "o id do animal é: " << m1->getId() <<"\n";
-
-}*
-
-void CriarAnimal::reptil(){
-	bool venenoso;
-	string tipo_veneno;
-	classe = "reptil";
-	cout<< " Digite o nome do animal: " << endl;
-	cin >> id;
-	cout<< " Digite o nome cientifico: " << endl;
-	cin >> nome_cientifico;
-	cout<< " Digite o sexo: " << endl;
-	cin >> sexo;
-	cout<< " Digite o tamanho: " << endl;
-	cin >> tamanho;
-	cout<< " Digite a dieta: " << endl;
-	cin >> dieta;
-	cout<< " Digite o nome do batismo " << endl;
-	cin >> nome_batismo;
-	cout<< " Digite false caso não seja venenoso e true caso seja venenoso: " << endl;
-	cin >> venenoso;
-	cout<< " Digite o tipo do veneno " << endl;
-	cin >> tipo_veneno;
-	Reptil *m1 = new Reptil;
-	m1->setId(id);
-	cout << "o id do animal é: " << m1->getId() <<"\n";
-
-	
-} */
 
 class Menu {
 	public:
+        void meu_menu();
 		void cadastrarAnimal();
 		void removerAnimal();
 		void alterarAnimal();
@@ -510,12 +468,32 @@ class Menu {
 		void alterarFuncionario();
 		void consultarFuncionario();
 };
+void Menu::meu_menu() {
+    int op;
+    cout << "Digite 1 para cadastrar animal\n";
+    cout <<"Digite 2 para remover um animal\n";
+    cout <<"Digite 3 para alterar um animal\n";
+    cout <<"Digite 4 para consultar um animal\n";
+    cout <<"Digite 5 para cadastrar um funcionario\n";
+    cout << "Digite 6 para remover um funcionario\n";
+    cout <<"Digite 7 para alterar um Funcinario";
+    cout << "Digite 8 para consultar um funcionario\n";
+    Menu m_menu;
+    cin >> op;
+    switch (op) {
+        case 1:
+        cout << " opção: " << op << endl;
+        m_menu.cadastrarAnimal();
+        break;
+    }
+
+}
 
 
 void Menu::cadastrarAnimal(){
 
 	int entrada = 0;
-	CriarAnimal nome;
+	GerenciarAnimal nome;
 
 	cout<<"1. Mamifero " << endl;
 	cout<<"2. Ave " << endl;
@@ -577,55 +555,10 @@ void Menu::consultarFuncionario(){
 
 	
 int main () {
-/*	Veterinario *f1 = new Veterinario;
-	f1->setNome("Marcos");
-	map <int, Veterinario> mapavet;
-	//cout << mapavet.size();
-	if (mapavet.empty()) {
-		mapavet[0] = *f1;
-	}
-	
-	cout << "oi, "<< f1->getNome();
-	f1->setCrmv("12");
-	cout << f1->getNome() << " seu crmv é : " << f1->getCrmv();
-	
-	cout << "testando map:\n === mostrando o conteudo do primeiro elementro do map:\n" ;
-	cout << "mapavet: " << mapavet[0].getNome();
-	cout << "\n\n\n ============ \n\n\nTestando Tratador\n";
-	
-	Tratador *f2= new Tratador;
-	f2->setNome("Marcos");
-	map <int, Tratador> mapatrat;
-	//cout << mapavet.size();
-	if (mapatrat.empty()) {
-		mapatrat[0] = *f2;
-	}
-	
-	cout << "oi, "<< f2->getNome();
-	f2->setNivel(2);
-	cout << f2->getNome() << " seu Nivel é : " << f2->getNivel();
-	 
-	cout << "Criando 3 Tratadores\n";
-	string nome_trat;
-	//int i;
-	int k =1;
-	while (k<=3) {
-		cin >> nome_trat;
-		//cin << i;
-       	f2->setNome(nome_trat);
-        cout << f2->getNome()<<"\n";
-        mapatrat[k] = *f2;
-        k++;
-	} 
-    *f2=mapatrat[2];
-    cout << f2->getNome() << " deu certo \n";
-*/
 
-	 cout << "TESTANDO Animais, até agora Mamiferos e Anfibios ok /// \n";
-	map <int, Mamifero> mamapmamifero;
-	//Mamifero *m1 = new Mamifero;
+    cout << "TESTANDO Animais, até agora Mamiferos e Anfibios ok /// \n";
 	Menu ccc;
-	ccc.cadastrarAnimal();
+	ccc.meu_menu();
 
 
     return 0;

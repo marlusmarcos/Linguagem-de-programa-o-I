@@ -476,7 +476,7 @@ void Menu::meu_menu() {
     cout <<"Digite 4 para consultar um animal\n";
     cout <<"Digite 5 para cadastrar um funcionario\n";
     cout << "Digite 6 para remover um funcionario\n";
-    cout <<"Digite 7 para alterar um Funcinario";
+    cout <<"Digite 7 para alterar um Funcinario\n";
     cout << "Digite 8 para consultar um funcionario\n";
     Menu m_menu;
     cin >> op;
@@ -499,12 +499,14 @@ void Menu::cadastrarAnimal(){
 	cout<<"2. Ave " << endl;
 	cout<<"3. Anfibio " << endl;
 	cout<<"4. Reptil " << endl;
+    cout << "0. Voltar ao menu\n";
 	cout<<"ESCOLHA A OPCAO : " << endl;
 	cin>>entrada;
 
 
 	switch(entrada){
-
+    case 0:
+        return meu_menu();
 	case 1:
 		cout << "opcao " << entrada;
 		nome.mamifero();
@@ -556,7 +558,7 @@ void Menu::consultarFuncionario(){
 	
 int main () {
 
-    cout << "TESTANDO Animais, até agora Mamiferos e Anfibios ok /// \n";
+    cout << "TESTANDO  (Animais estão todos okay)/// \n";
 	Menu ccc;
 	ccc.meu_menu();
 

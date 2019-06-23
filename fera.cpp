@@ -12,8 +12,9 @@ class Funcionario {
 		char fator_rh;
 		string especialidade;
 	public:
-	    //Funcionario();
-		//~Funcionario();
+	    Funcionario(void);
+		Funcionario(int id, string nome, string cpf, short int idade, short int tipo_sanguineo,	char fator_rh, string especialidade);
+        ~Funcionario();
 		void setId(int id);
 		int getId();
 		void setNome(string nome);
@@ -72,14 +73,17 @@ class Funcionario {
 	string Funcionario::getEspecialidade(){
 		return especialidade;
 	}
+Funcionario::Funcionario(){};
+Funcionario::~Funcionario(){}; 
 	
 	
 class Tratador : public Funcionario {
 	private:
 		int nivel_de_seguranca;
 	public:
-		//Tratador();
-		//~Tratador();
+		Tratador(){};
+        Tratador(int id, string nome, string cpf, short int idade, short int tipo_sanguineo,	char fator_rh, string especialidade, int nivel_de_seguranca);
+		
 		void setNivel(int ni);
 		int getNivel ();
 };
@@ -95,8 +99,8 @@ class Veterinario : public Funcionario {
 		string crmv;
 	
 	public:
-		//Veterinario();
-		//~Veterinario();
+		Veterinario();
+		~Veterinario();
 	void setCrmv(string c);
 	string getCrmv ();
 };
@@ -126,17 +130,17 @@ class Animal {
 		void setId(int id);
 		int getId();
 		void setClasse(std::string classe);
-		std::string getClasse();
+		string getClasse();
 		void setNomeCientifico(std::string nome_cientifico);
-		std::string getNomeCientifico();
+		string getNomeCientifico();
 		void setSexo(char sexo);
 		char getSexo();
 		void setTamanho(double tamanho);
 		double getTamanho();
 		void setDieta(std::string dieta);
-		std::string getDieta();
+		string getDieta();
 		void setNomeBatismo(std::string nome_batismo);
-		std::string getNomeBatismo();
+		string getNomeBatismo();
 };
 
 
@@ -200,7 +204,7 @@ class Anfibio : public Animal {
 		Data ultima_muda;
 	public:
 		Anfibio(){};
-		Anfibio(int id , string nome_cientifico, char sexo, int tamanho, string dieta, string nome_batismo);
+		Anfibio(int id , string nome_cientifico, char sexo, int tamanho, string dieta, string nome_batismo); //aqui falta total de mudas e ultima muda
 		
 		//void setTotalMudas();
 		//int getTotalMudas();
@@ -331,6 +335,21 @@ class Ave : public Animal {
     }
     delete derivada;
 } */
+
+class GerenciarFuncionario {
+	private:
+		int id;
+		string nome;
+		string cpf;
+		short int idade;
+		short int tipo_sanguineo;
+		char fator_rh;
+		string especialidade;
+	public:
+        void tratador();
+        void veterinario();
+};
+
 
 class GerenciarAnimal { //essa classe serve para um suporte aoo menu, é aqui onde será colocada no map o animal
 	private:
@@ -476,7 +495,7 @@ void Menu::meu_menu() {
     cout <<"Digite 4 para consultar um animal\n";
     cout <<"Digite 5 para cadastrar um funcionario\n";
     cout << "Digite 6 para remover um funcionario\n";
-    cout <<"Digite 7 para alterar um Funcinario\n";
+    cout <<"Digite 7 para alterar um Funcionario\n";
     cout << "Digite 8 para consultar um funcionario\n";
     Menu m_menu;
     cin >> op;

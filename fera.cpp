@@ -111,9 +111,15 @@ class Veterinario : public Funcionario {
 		Veterinario(){};
 		Veterinario(int id, string nome, string cpf, short int idade, short int tipo_sanguineo,	char fator_rh, string especialidade, string crmv);
 
-	//void setCrmv(string c);
-	string getCrmv ();
+		//void setCrmv(string c);
+		string getCrmv ();
+		void Imprimir();
 };
+void Veterinario::Imprimir() {
+	cout << "ID:" << id << "\nNome: " << nome << "\nCPF: " << cpf << "\nIdade: " << idade << "\nTipo sanguíneo: " << tipo_sanguineo << "\nFator RH: " << fator_rh  << "\nEspecialidade: "
+	<< especialidade << "\nCRMV: " << crmv <<endl;
+}
+
 Veterinario::Veterinario(int id, string nome, string cpf, short int idade, short int tipo_sanguineo,	char fator_rh, string especialidade, string crmv)
 {
 	this->id=id;
@@ -124,9 +130,9 @@ Veterinario::Veterinario(int id, string nome, string cpf, short int idade, short
 	this->fator_rh= fator_rh;
 	this->crmv=crmv;
 }
-	string Veterinario::getCrmv(){
-		return crmv;
-	};
+string Veterinario::getCrmv(){
+	return crmv;
+};
 
 /// ================================================================================================================================================================================
 ///=================================================================================================================================================================================
@@ -142,7 +148,7 @@ class Animal {
 		double tamanho;
 		string dieta;
 		string nome_batismo;
-		//Veterinario veterinario;
+		//Veterinario veterinario;	
 		//Tratador tratador;
 		
 	public:
@@ -413,6 +419,10 @@ void GerenciarFuncionario::veterinario() {
 	cin >> crmv;
 	Veterinario *t1 = new Veterinario(id,nome,cpf, idade,tipo_sanguineo,fator_rh, especialidade,  crmv);
 	cout << "O id do veterinario é: " << t1->getId() << "e seu nome é: " << t1->getNome() << endl;
+	//int total = map_vet.size();
+	//map_vet.insert(pair<;int, Veterinario> (0, *t1);
+	t1->Imprimir();
+
 }
 
 
@@ -677,7 +687,7 @@ void Menu::consultarFuncionario(){
 
 	
 int main () {
-
+	map <int, Veterinario> map_vet;
     cout << "TESTANDO  (Animais estão todos okay)/// \n";
 	Menu ccc;
 	ccc.meu_menu();

@@ -86,7 +86,13 @@ class Tratador : public Funcionario {
 		
 		//void setNivel(int ni);
 		int getNivel ();
+		void Imprimir();
+
 };
+void Tratador::Imprimir() {
+	cout << "ID:" << id << "\nNome: " << nome << "\nCPF: " << cpf << "\nIdade: " << idade << "\nTipo sanguíneo: " << tipo_sanguineo << "\nFator RH: " << fator_rh  << "\nEspecialidade: "
+	<< especialidade << "\nNível de segurança: " << nivel_de_seguranca <<endl;
+}
 
 Tratador::Tratador(int id, string nome, string cpf, short int idade, short int tipo_sanguineo,	char fator_rh, string especialidade, int nivel_de_seguranca){
 	this->id=id;
@@ -397,6 +403,7 @@ void GerenciarFuncionario::tratador() {
 	cin >> nivel_de_seguranca;
 	Tratador *t1 = new Tratador(id, nome, cpf, idade, tipo_sanguineo,fator_rh, especialidade, nivel_de_seguranca);
 	cout << "O id do tratador é: " << t1->getId() << "e seu nome é: " << t1->getNome() << "\n";
+	t1->Imprimir();
 }
 
 void GerenciarFuncionario::veterinario() {
@@ -636,6 +643,11 @@ void Menu::cadastrarAnimal(){
 
 
 void Menu::removerAnimal(){
+	/*mostrar a opção de escolha, entre mamiferos, aves e entre outros..*/
+	/*receber a entrada e printar a lista de mamiferos(exemplo), print seu nome e ID*/ 
+	/*Receber o id, e no id faz a comparação na lista, se for igual, da um erese no map, removendo o animal da lista*/
+	//TODO:
+
 
 }
 void Menu::alterarAnimal(){

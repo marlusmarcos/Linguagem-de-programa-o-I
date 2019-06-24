@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <map>
+#include <fstream>
 using namespace std;
 class Funcionario {
 	protected:
@@ -306,8 +307,17 @@ class Reptil : public Animal {
 	public:
 		Reptil(){};
 		Reptil(int id , string nome_cientifico, char sexo, int tamanho, string dieta, string nome_batismo,  bool venenoso, string tipo_venenoso);
-		
+		bool getVenenoso();
+		string getTipoVenenoso();
 };
+
+	string Reptil::getTipoVenenoso() {
+		return this-> tipo_venenoso;
+	}
+	bool Reptil::getVenenoso() {
+		return this->venenoso;
+	}
+
 	Reptil::Reptil(int id , string nome_cientifico, char sexo, int tamanho, string dieta, string nome_batismo, bool venenoso, string tipo_venenoso){
 		this->id = id;
 		//this-> classe = classe;
@@ -500,7 +510,8 @@ void GerenciarAnimal::anfibio() {
 void GerenciarAnimal::reptil() {
 	bool venenoso;
 	string tipo_venenoso;
-
+	fstream Arq;
+    Arq.open("Dados2.txt", ios::out|ios::app);
 	cout<< " Digite o id do animal: " << endl;
 	cin >> id;
 	cout<< " Digite o nome cientifico: " << endl;
@@ -517,12 +528,13 @@ void GerenciarAnimal::reptil() {
 	cin >> venenoso;
 	cout << "Digite o tipo do neveno" << endl;
 	cin >> tipo_venenoso;
-
+/*Arq << id <<"#" << classe << "#" << nome_cientifico <<"#" <<
+	sexo << "#" << tamanho << "#" << dieta << "#" << nome_batismo <<"#" << venenoso << "#" << venenoso "\n";*/
 
 	classe = "reptil";
 	Reptil *m1 = new Reptil(id ,nome_cientifico,sexo,tamanho,dieta,nome_batismo, venenoso, tipo_venenoso);
-	cout << "o id do animal é: " << m1->getId() <<"\n";
-	
+	Arq << m1->getId() <<"#" << m1->getClasse() << "#" << m1->getNomeCientifico() <<"#" <<
+	m1->getSexo() << "#" << m1->getTamanho() << "#" << m1->getDieta() << "#" << m1->getNomeBatismo() <<"#" << m1->getVenenoso() << "#" << m1->getTipoVenenoso() << "\n";	
 	//add no map de manfibio
 }
 
@@ -643,11 +655,6 @@ void Menu::cadastrarAnimal(){
 
 
 void Menu::removerAnimal(){
-	/*mostrar a opção de escolha, entre mamiferos, aves e entre outros..*/
-	/*receber a entrada e printar a lista de mamiferos(exemplo), print seu nome e ID*/ 
-	/*Receber o id, e no id faz a comparação na lista, se for igual, da um erese no map, removendo o animal da lista*/
-	//TODO:
-
 
 }
 void Menu::alterarAnimal(){
@@ -699,6 +706,8 @@ void Menu::consultarFuncionario(){
 
 	
 int main () {
+//	fstream Arq;
+  //  Arq.open("Dados.txt", ios::out|ios::app);
 	map <int, Veterinario> map_vet;
     cout << "TESTANDO  (Animais estão todos okay)/// \n";
 	Menu ccc;
@@ -707,3 +716,8 @@ int main () {
 
     return 0;
 }
+/*fstream Arq;
+    Arq.open("Dados.txt", ios::out|ios::app);
+
+   Arq << a->getId() <<"#" << a->getClasse() << "#" << a->getNomeCientifico() <<"#" <<
+   a->getSexo() << "#" << a->getTamanho() << "#" << a->getDieta() << "#" << a->getNomeBatismo() << "\n"; */

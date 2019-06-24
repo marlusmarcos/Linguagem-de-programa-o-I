@@ -78,38 +78,60 @@ Funcionario::~Funcionario(){};
 	
 	
 class Tratador : public Funcionario {
-	private:
+	protected:
 		int nivel_de_seguranca;
 	public:
 		Tratador(){};
         Tratador(int id, string nome, string cpf, short int idade, short int tipo_sanguineo,	char fator_rh, string especialidade, int nivel_de_seguranca);
 		
-		void setNivel(int ni);
+		//void setNivel(int ni);
 		int getNivel ();
 };
-	void Tratador::setNivel(int ni) {
-		nivel_de_seguranca = ni;
-	}
-	int Tratador::getNivel() {
-		return nivel_de_seguranca;
-	}
+
+Tratador::Tratador(int id, string nome, string cpf, short int idade, short int tipo_sanguineo,	char fator_rh, string especialidade, int nivel_de_seguranca){
+	this->id=id;
+	this->nome=nome;
+	this->cpf=cpf;
+	this->idade=idade;
+	this->tipo_sanguineo = tipo_sanguineo;
+	this->fator_rh= fator_rh;
+	this->especialidade=especialidade;
+	this->nivel_de_seguranca=nivel_de_seguranca;
+}
+
+int Tratador::getNivel() {
+	return nivel_de_seguranca;
+}
 
 class Veterinario : public Funcionario {
 	private:
 		string crmv;
 	
 	public:
-		Veterinario();
-		~Veterinario();
-	void setCrmv(string c);
+		Veterinario(){};
+		Veterinario(int id, string nome, string cpf, short int idade, short int tipo_sanguineo,	char fator_rh, string especialidade, string crmv);
+
+	//void setCrmv(string c);
 	string getCrmv ();
 };
-	void Veterinario::setCrmv(string c) {
-		crmv = c;
-	}
+Veterinario::Veterinario(int id, string nome, string cpf, short int idade, short int tipo_sanguineo,	char fator_rh, string especialidade, string crmv)
+{
+	this->id=id;
+	this->nome=nome;
+	this->cpf=cpf;
+	this->idade=idade;
+	this->tipo_sanguineo = tipo_sanguineo;
+	this->fator_rh= fator_rh;
+	this->crmv=crmv;
+}
 	string Veterinario::getCrmv(){
 		return crmv;
-	}
+	};
+
+/// ================================================================================================================================================================================
+///=================================================================================================================================================================================
+/// =========================================================== CLASSE ANIMAL =======================================================
+
 
 class Animal {
 	protected:
@@ -120,8 +142,8 @@ class Animal {
 		double tamanho;
 		string dieta;
 		string nome_batismo;
-		Veterinario veterinario;
-		Tratador tratador;
+		//Veterinario veterinario;
+		//Tratador tratador;
 		
 	public:
 		Animal(void);
@@ -349,6 +371,49 @@ class GerenciarFuncionario {
         void tratador();
         void veterinario();
 };
+void GerenciarFuncionario::tratador() {
+	int nivel_de_seguranca;
+	cout <<"Digite o ID do Funcionario:\n";
+	cin >> id;
+	cout << "Digite o nome:\n";
+	cin >> nome;
+	cout << "Digite seu cpf:\n";
+	cin >> cpf;
+	cout << "Digite sua idade:\n";
+	cin >> idade;
+	cout << "Digite seu tipo sanguíneo:\n";
+	cin >> tipo_sanguineo;
+	cout << "Digite seu fator RH:\n";
+	cin >> fator_rh;
+	cout << "Digite sua especialidade \n";
+	cin >> especialidade;
+	cout << "Digite seu nível de segurança:\n";
+	cin >> nivel_de_seguranca;
+	Tratador *t1 = new Tratador(id, nome, cpf, idade, tipo_sanguineo,fator_rh, especialidade, nivel_de_seguranca);
+	cout << "O id do tratador é: " << t1->getId() << "e seu nome é: " << t1->getNome() << "\n";
+}
+
+void GerenciarFuncionario::veterinario() {
+	string crmv;
+	cout <<"Digite o ID do Funcionario:\n";
+	cin >> id;
+	cout << "Digite o nome:\n";
+	cin >> nome;
+	cout << "Digite seu cpf:\n";
+	cin >> cpf;
+	cout << "Digite sua idade:\n";
+	cin >> idade;
+	cout << "Digite seu tipo sanguíneo:\n";
+	cin >> tipo_sanguineo;
+	cout << "Digite seu fator RH:\n";
+	cin >> fator_rh;
+	cout << "Digite sua especialidade \n";
+	cin >> especialidade;
+	cout << "Digite seu crmv:\n";
+	cin >> crmv;
+	Veterinario *t1 = new Veterinario(id,nome,cpf, idade,tipo_sanguineo,fator_rh, especialidade,  crmv);
+	cout << "O id do veterinario é: " << t1->getId() << "e seu nome é: " << t1->getNome() << endl;
+}
 
 
 class GerenciarAnimal { //essa classe serve para um suporte aoo menu, é aqui onde será colocada no map o animal
@@ -501,10 +566,18 @@ void Menu::meu_menu() {
     cin >> op;
     switch (op) {
         case 1:
-        cout << " opção: " << op << endl;
-        m_menu.cadastrarAnimal();
-        break;
-    }
+        	cout << " opção: " << op << endl;
+       	 	m_menu.cadastrarAnimal();
+        	break;
+    
+		case 5:
+			cout << "opção : " << op << endl;
+			m_menu.cadastrarFuncionario();
+			break;
+		default:
+			//return m_menu();
+			break;
+	}
 
 }
 
@@ -562,6 +635,34 @@ void Menu::consultarAnimal(){
 
 }
 void Menu::cadastrarFuncionario(){
+
+	int entrada = 0;
+	GerenciarFuncionario nome;
+
+	cout<<"1. Tratador " << endl;
+	cout<<"2. Veterinário " << endl;
+    cout << "0. Voltar ao menu\n";
+	cout<<"ESCOLHA A OPCAO : " << endl;
+	cin>>entrada;
+
+
+	switch(entrada){
+    case 0:
+        return meu_menu();
+	case 1:
+		cout << "opcao " << entrada;
+		nome.tratador();
+		break;
+	case 2:
+		cout << " opcao " << entrada;
+		nome.veterinario();
+		break;
+	default: 
+		cout << "Opcao  " << entrada << " invalida. ";
+		return cadastrarAnimal();
+		break;
+};
+
 
 }
 void Menu::removerFuncionario(){

@@ -511,7 +511,9 @@ void GerenciarAnimal::reptil() {
 	bool venenoso;
 	string tipo_venenoso;
 	fstream Arq;
-    Arq.open("Dados2.txt", ios::out|ios::app);
+	map <int, Reptil> mapa_reptil;
+
+    Arq.open("Dados2.csv", ios::out|ios::app);
 	cout<< " Digite o id do animal: " << endl;
 	cin >> id;
 	cout<< " Digite o nome cientifico: " << endl;
@@ -533,6 +535,7 @@ void GerenciarAnimal::reptil() {
 
 	classe = "reptil";
 	Reptil *m1 = new Reptil(id ,nome_cientifico,sexo,tamanho,dieta,nome_batismo, venenoso, tipo_venenoso);
+
 	Arq << m1->getId() <<"#" << m1->getClasse() << "#" << m1->getNomeCientifico() <<"#" <<
 	m1->getSexo() << "#" << m1->getTamanho() << "#" << m1->getDieta() << "#" << m1->getNomeBatismo() <<"#" << m1->getVenenoso() << "#" << m1->getTipoVenenoso() << "\n";	
 	//add no map de manfibio
@@ -704,11 +707,16 @@ void Menu::consultarFuncionario(){
 
 }
 
+/*class Escrita {
+
+}
+*/
 	
 int main () {
 //	fstream Arq;
   //  Arq.open("Dados.txt", ios::out|ios::app);
-	map <int, Veterinario> map_vet;
+	map <int, Reptil> mapa_reptil;
+
     cout << "TESTANDO  (Animais estão todos okay)/// \n";
 	Menu ccc;
 	ccc.meu_menu();
